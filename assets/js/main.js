@@ -18,27 +18,53 @@ const buttonEl = document.querySelector('button');
 const containerEl = document.querySelector('.container');
 const cellsNumber = 100;
 
-gridGenerator(cellsNumber, containerEl);
-function gridGenerator(maxCellNumb, domEl){
-    buttonEl.addEventListener('click', function(){
-        for (let i=0; i < maxCellNumb; i++){
-            const numb = i + 1;
-            console.log(numb);
-            const cellMarkup = `<div class="cell">${numb}</div>`;
-            domEl.innerHTML += cellMarkup; 
-            console.log(cellMarkup);     
-        }
-        let cellListEl = document.querySelectorAll('.cell');
-        for (let i=0; i < cellListEl.length; i++){
-            let currentCell = cellListEl[i];
-            console.log(currentCell);
-            currentCell.addEventListener('click', function(){
-                currentCell.classList.toggle('light_blue');
-                const currentNumb = i+1;
-                console.log(currentNumb);
+
+// buttonEl.addEventListener('click', function(){
+//     containerEl.innerHTML = '';
+//     for (let i=0; i < cellsNumber; i++){
+//         const numb = i + 1;
+//         //console.log(numb);
+//         const cellMarkup = `<div class="cell">${numb}</div>`;
+//         containerEl.insertAdjacentHTML('beforeend', cellMarkup) 
+//         //console.log(cellMarkup);  
+//     }
+//     let cellListEl = document.querySelectorAll('.cell');
+//     for (let i=0; i < cellListEl.length; i++){
+//         let currentCell = cellListEl[i];
+//         //console.log(currentCell);
+//         currentCell.addEventListener('click', function(){
+//         this.classList.toggle('light_blue');
+//         const currentNumb = i+1;
+//         console.log(currentNumb);
+//         })
+//     }
+// })
+
+gridGenerator(buttonEl, containerEl, cellsNumber)
+function gridGenerator(btnElement, containerElement, maxNumbers){
+    btnElement.addEventListener('click', function(){
+        //console.log('ho cliccato');
+        containerElement.innerText = '';
+        for (let i=0; i < maxNumbers; i++){
+            const cellMarkup = cellEl(i, 'div', 'cell');
+            containerElement.insertAdjacentElement('beforeend', cellMarkup);
+
+            cellMarkup.addEventListener('click', function() {
+                this.classList.toggle('light_blue');
+                console.log(this.innerText);   
             })
         }
     })
-} 
-    
+}
+
+function cellEl(n, tagEl, classEl){
+    const cellMarkup = document.createElement(tagEl);
+    cellMarkup.className = classEl;
+    cellMarkup.innerText = n + 1;
+
+    return cellMarkup
+}
+
+
+
 
