@@ -18,7 +18,6 @@ const buttonEl = document.querySelector('button');
 const containerEl = document.querySelector('.container');
 const cellsNumber = 100;
 
-
 // buttonEl.addEventListener('click', function(){
 //     containerEl.innerHTML = '';
 //     for (let i=0; i < cellsNumber; i++){
@@ -65,6 +64,22 @@ function cellEl(n, tagEl, classEl){
     return cellMarkup
 }
 
+const bombsList = bombsGenerator(1, cellsNumber);
+console.log(bombsList);
 
+function bombsGenerator(min, max){
+    const bombsList = [];
+    while (bombsList.length !== 16){
+        const bombEl = generateRandomNumber(min, max);
+        if (!bombsList.includes(bombEl)){
+          bombsList.push(bombEl);
+        }
+    }
+    return bombsList
+}
+
+function generateRandomNumber(min, max){
+    return Math.floor(Math.random() * (max - min +1)) +min;
+}
 
 
