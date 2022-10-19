@@ -10,13 +10,11 @@
 //selezionare tutta la lista di cell e ascolto su singola cell cliccata
 //dare background color azzurro a cell cliccata
 
-//generare 16 bomb random number (while, if), non ripetuti, tra 1 e cellsNumber
-//se (while, if) currentNumb é == ad un bomb della lista, currentCell diventa rossa (toggle), altrimenti diventa azzurra e continua fino a che non ha trovato tutte le caselle azzurre (cellsNumber-bombs)
-//al termine pc comunica in dom il numero di caselle azzurre cliccate
 
 const buttonEl = document.querySelector('button');
 const containerEl = document.querySelector('.container');
 const cellsNumber = 100;
+let score = 0;
 
 // buttonEl.addEventListener('click', function(){
 //     containerEl.innerHTML = '';
@@ -63,6 +61,12 @@ function cellEl(n, tagEl, classEl){
 
     return cellMarkup
 }
+//generare 16 bomb random number (while, if), non ripetuti, tra 1 e cellsNumber
+//se (while, if) currentNumb(cellMarkup[i]) é == ad un bombEl, this.toggle('red'), console.log('Game over'), document.getElementById('h1').innerHTML = "Game Over! Sei finito su una bomba"
+//else this.toggle('light_blue'), score++
+
+//al termine pc comunica in dom il numero di caselle azzurre cliccate
+//document.getELementById('h1').innerHTML = "Total score:" + score;
 
 const bombsList = bombsGenerator(1, cellsNumber);
 console.log(bombsList);
